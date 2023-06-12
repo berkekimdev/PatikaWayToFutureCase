@@ -158,7 +158,7 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 * İlk olarak docker image'ımızı dockerhub üzerinden pull ediyoruz.
 `` docker pull sudkostik/bootcamp:0.0.5 ``
 * docker images yazarak indirilip indirilmediğini kontrol edebilirsiniz.
-* Çalıştırma aşamasında ``` docker run -d -p 5000:5000 sudkostik/bootcamp:0.0.5 `` yazarak artık application'ımızı çalıştırıyoruz.
+* Çalıştırma aşamasında ``docker run -d -p 5000:5000 sudkostik/bootcamp:0.0.5`` yazarak artık application'ımızı çalıştırıyoruz.
 * Artık application'ımıza IP'mizin 5000. portundan erişebiliriz  IP : http://18.159.16.101:5000
 
 
