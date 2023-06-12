@@ -3,6 +3,7 @@
 * Bir GNU/Linux dagitiminda Root diski kullanim (doluluk) orani %90’i gecinde uyari veren bir
 Shell Script yazılımı.
 * Shell Script çalıştırıldığında eğer root diskinin kullanım oranı  %90'ı geçtiyse uyarı verir eğer geçmediyse o anki kullanım oranını ekrana yazdırır. 
+**Kullanıcının  bu  uyarıyı sürekli terminalden göremeyeceğini varsayarsak ekstra kod eklemeleri yapabiliriz. Mail göndererek kullancıyı bilgilendirme işlemi en aşağıya yazıldı.**
 
 
 ## Kurulum
@@ -65,6 +66,65 @@ chmod +x disk_usage.sh
 `if [ $disk_usage -gt 90 ]; then ... fi`: Bu satırlar, disk_usage değişkeninin 90'dan büyük olup olmadığını kontrol eder. Eğer büyükse, "Uyarı: Root diskinin kullanım oranı $disk_usage%'ı geçti!" mesajını yazdırır. Eğer 90'dan büyük değilse, "Root diski kullanım oranı şu anda $disk_usage%, %90'ı geçmedi." mesajını yazdırır. 
 
 `check_disk_usage` : Bu satır, check_disk_usage fonksiyonunu çağırır. Bu, betiğin ana işlevini gerçekleştirir. Fonksiyon çağrıldığında, disk kullanımını kontrol eder ve uygun mesajı yazdırır.
+
+## Mail Göndererek Kullanıcıyı Sürekli Uyarma
+* Kullanıcının sürekli olarak bilgilendirilmesini istiyorsak mail üzerinden Root diski kullanım oranı %90'ı geçerse mail göndermesini sağlayan bir shell script yazabiliriz. Az önce yazdığımız koda sadece  ``| mail -s "Disk Usage Alert" user@example.com`` eklememiz yeterli.  
+* Bu Shell Script'in sürekli arka planda çalışması gerekiyor ki kullanıcıyı uyarabilsin. En alt kısımda bunu nasıl yapabileceğinizi anlattım.
+
+### Mail gönderen Shell Script
+```
+#!/bin/bash
+
+check_disk_usage() {
+    local disk_usage=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
+    if [ "$disk_usage" -gt 90 ]; then
+        echo "Uyarı: Root diskinin kullanım oranı $disk_usage%'ı geçti!" | mail -s "Disk Usage Alert" user@example.com
+    else
+        echo "Root diski kullanım oranı şu anda $disk_usage%, %90'ı geçmedi."
+    fi
+}
+
+check_disk_usage
+``` 
+### Arka Planda Shell Script Çalıştırılması
+* Eğer bu dosyanın sürekli olarak arka planda çalışmasını istiyorsanız, systemd hizmet dosyası oluşturmanız gerekmektedir.
+* ``/etc/systemd/system/`` dizininde disk_kullanimi.service adında bir dosya oluşturun. Örneğin, ``sudo nano /etc/systemd/system/disk_kullanimi.service`` komutunu kullanarak bir metin düzenleyici açabilirsiniz.
+
+* Aşağıdaki hizmet tanımını hizmet dosyasına yapıştırın:
+```
+
+[Unit]
+Description=Disk Kullanımı Kontrolü
+After=network.target
+
+[Service]
+ExecStart=/path/to/disk_kullanimi.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+```
+* ExecStart satırındaki /path/to/disk_kullanimi.sh ifadesini, "disk_kullanimi.sh" dosyasının gerçek yolunu gösteren doğru bir yol ile değiştirin.
+
+* Dosyayı kaydedin ve kapatın.
+
+* Hizmeti etkinleştirin ve başlatın:
+
+```
+sudo systemctl enable disk_kullanimi.service
+sudo systemctl start disk_kullanimi.service
+
+```
+* Artık script, sistem başlangıcında otomatik olarak başlayacak ve sürekli arka planda çalışmaya devam edecektir. Root diski kullanım oranı %90'ı geçtiğinde script, belirttiğiniz e-posta adresine bir uyarı mesajı gönderecektir.
+
+* Hizmeti durdurmak isterseniz, aşağıdaki komutu kullanabilirsiniz:
+
+``` 
+sudo systemctl stop disk_kullanimi.service
+
+```
+
 
 
 
