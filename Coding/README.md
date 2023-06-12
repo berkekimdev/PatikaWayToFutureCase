@@ -3,7 +3,7 @@
 * Bir GNU/Linux dagitiminda Root diski kullanim (doluluk) orani %90’i gecinde uyari veren bir
 Shell Script yazılımı.
 * Shell Script çalıştırıldığında eğer root diskinin kullanım oranı  %90'ı geçtiyse uyarı verir eğer geçmediyse o anki kullanım oranını ekrana yazdırır.  
-*  **Kullanıcının  bu  uyarıyı sürekli terminalden göremeyeceğini varsayarsak ekstra kod eklemeleri yapabiliriz. Mail göndererek kullancıyı bilgilendirme işlemi en aşağıya yazıldı.**
+*  **Kullanıcının  bu  uyarıyı sürekli terminalden göremeyeceğini varsayarsak ekstra kod eklemeleri yapabiliriz. Mail göndererek kullancıyı bilgilendirme işlemi en aşağıya yazıldı.** - [Mail Gönderme](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Coding/README.md#mail-g%C3%B6ndererek-kullan%C4%B1c%C4%B1y%C4%B1-s%C3%BCrekli-uyarma)
 
 
 
