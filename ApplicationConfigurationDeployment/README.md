@@ -62,7 +62,7 @@ CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
 ![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/ilkfoto.png)
 
 
-### **Dockerfile'da yazan kodlar ne işe yarıyor**
+### **Dockerfile'da yazan kodlar ne işe yarıyor:**
 ``FROM python:3.8-slim-buster as builder``
 Bu komut, Docker imajının temelini oluşturacak olan başka bir Docker imajını belirtir. Burada, Python 3.8 sürümünün 'slim-buster' varyantını temel alıyoruz. 'Slim-buster' varyantı, Debian Buster tabanlı ve sadece Python 3.8 yüklemesi içeren bir imajdır ve boyutu azdır. Ayrıca bu aşamayı 'builder' olarak adlandırıyoruz. Bu, birden fazla aşamalı bir Docker imajı oluştururken bu aşamayı daha sonra referans alabilmemizi sağlar.
 
