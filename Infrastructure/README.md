@@ -188,8 +188,8 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 
 **Create Load Balancer diyerek Load Balancer'ımızı oluşturun.**
 
-![]()
-<img width="620" alt="loadbalancertargetgroup" src="https://github.com/sudkostik/infrastructure/assets/104645493/3020b024-d399-4384-8ddd-f26f00aa9ce1">
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Infrastructure/InfrasImages/loadbalanceraktif.PNG)
+
 
 
 
