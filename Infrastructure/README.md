@@ -11,7 +11,6 @@
 * Açılan formda, VPC için bir isim belirleyin ve IPv4 CIDR block olarak '10.0.0.0/16' (istersek fazla ip meşgul etmemek için 4 farklı subnete 62 host verebilecek minimum değere yakın bir aralık verebiliriz 10.0.0.0/22 gibi fakat böyle tercih ettim. Subnet kısmında ip bloklarına dikkat ettim) değerini girin ve 'Create' butonuna tıklayın.
 ### **Oluşmuş VPC**
 ![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Infrastructure/InfrasImages/olusmusvpc.png)
-<img width="1200" alt="vpc" src="https://github.com/sudkostik/infrastructure/assets/104645493/e9c177cd-7977-4845-9145-01289602f747"> 
 
 * VPC oluşturulduktan sonra, sol taraftaki 'Subnets' seçeneğine tıklayın ve 'Create subnet' butonuna tıklayın.
 * Oluşturulan VPC'yi seçin, 2 private ve 2 public subnet için birer isim belirleyin ve CIDR bloğu olarak hepsine ayrı ip bloğu ve değerini girin. Bu, size 62 adet kullanılabilir IP adresi sağlasın. Bu işlemi toplamda 4 kere tekrar edin.IP bloğu atarken en çok dikkat etmeniz gereken noktalar şunlardır :  
@@ -23,6 +22,7 @@
 * Her biri için farklı CIDR blokları vermeliyiz (örneğin  public-1a 10.0.20.0/25 , public-1b 10.0.21.0/25 , private-1a 10.0.10.0/25 , private-1b 10.0.11.0/25 gibi ).
 * İki subnet'i public, diğer ikisini private yapmak için, subnet detaylarında 'Modify auto-assign IP settings' seçeneğine tıklayın ve 'Enable auto-assign public IPv4 address' seçeneğini işaretleyin. Bu *işlemi sadece public yapmak istediğiniz subnet'ler için yapın.
  ### **Oluşan Bütün Subnetlerimiz**
+ ![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Infrastructure/InfrasImages/olusmusbutunsubnet.png)
 <img width="1500" alt="subnet" src="https://github.com/sudkostik/infrastructure/assets/104645493/4cf260d5-b864-49cb-99a9-e47600722d30">
 
 ##  Internet Gateway VPC kaynaklarının halka açık IP adresleriyle İnternete bağlanması.
@@ -36,6 +36,7 @@
 * Oluşturulan Internet Gateway'in ayrıntıları görüntülenecektir. Internet Gateway, "Actions" (Eylemler) düğmesini kullanarak VPC'nize Attach düğmesiyle bağlayın.
  ### **Internet Gateways**
  
+ ![]()
 ![IGW Image](https://github.com/sudkostik/infrastructure/blob/main/assets/104645493_6239a83e_4958_404e_8263_41de2d6855bb.jpg)
 
 
@@ -44,7 +45,8 @@
 
 ### **Public Route Table** 
 * VPC yönetim panelinde sol menüden "Route Tables" (Yönlendirme Tabloları) seçeneğini bulun ve tıklayın.
-* "Create" (Oluştur) düğmesini tıklayın. Public ve Private için iki farklı route table oluşturmalıyız. İlkini patika-wtf-public-rb diye isimlendirin. Subnet associations kısmından edit subnet associations'a tıklayarak public subnetlerimizi ekliyoruz. Edit routes diyerek Destination'u  0.0.0.0/0 (Anywhere) olan Internet gateway'imizi bağlayarak public subnetlerimizi internete açıyoruz.    
+* "Create" (Oluştur) düğmesini tıklayın. Public ve Private için iki farklı route table oluşturmalıyız. İlkini patika-wtf-public-rb diye isimlendirin. Subnet associations kısmından edit subnet associations'a tıklayarak public subnetlerimizi ekliyoruz. Edit routes diyerek Destination'u  0.0.0.0/0 (Anywhere) olan Internet gateway'imizi bağlayarak public subnetlerimizi internete açıyoruz.  
+![]()  
 <img width="775" alt="publicroute" src="https://github.com/sudkostik/infrastructure/assets/104645493/c1081122-07c9-4129-99fa-2b8cf0c68a70">
 
 **Private route table'ımızı oluşturmadan önce NAT Gateway oluşturmamız lazım.Bu sayede private subnetlerimiz  halka açık İnternet'e erişebilmesini sağlayacak.**  
@@ -62,6 +64,7 @@
 
 ### **Private Route Table**  
 * Private subnetlerimiz için ise patika-wtf-private-rb adında bir route table oluşturuyoruz. Subnet associations kısmından edit subnet associations diyerek private subnetlerimizi ekliyoruz. Private subnetlerimizi internete direkt açmayacağız. Onun yerine Bir NAT gateway oluşturarak public subnetlerle iletişim kurarak internete bağlanmalarını sağlayacağız.Oluşturduğumuz NAT gateway'ini Edit Routes diyerek Destination'u 0.0.0.0/0 (Anywhere) ve Target'ını oluşturacağımız NAT'ı seçerek oluşturuyoruz.
+![]()
 <img width="774" alt="privateroute" src="https://github.com/sudkostik/infrastructure/assets/104645493/c4c59d21-2b22-46ed-9a53-2881c3855538">
 
 ## Network ACL 
@@ -75,6 +78,8 @@
 
 * Oluşturulan Network ACL'ye giriş ve çıkış trafiği için kurallar eklemek için "Inbound Rules" (Giriş Kuralları) ve "Outbound Rules" (Çıkış Kuralları) düğmelerini tıklayın.
 * Subnet Associations kısmından edit Subnet Associations diyerek bütün subnetlerimizi ekliyoruz.
+
+![]()
 <img width="741" alt="naclsubnet" src="https://github.com/sudkostik/infrastructure/assets/104645493/be175345-dfda-4688-9d74-3da40872bd89">
 
 
@@ -85,10 +90,11 @@ Bağlantı noktası aralığı
 İzin veya reddetme
 Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 #### **Inbound Rules** 
-
+![]()
 <img width="763" alt="inboundrules" src="https://github.com/sudkostik/infrastructure/assets/104645493/566a8b62-eaee-4bf7-a948-9ca676314f1f">  
 
 #### **Outbound Rules**   
+![]()
 <img width="760" alt="outboundrules" src="https://github.com/sudkostik/infrastructure/assets/104645493/7cef0c5d-6fbe-4008-9141-0b3fc861ae36">
 
 
@@ -111,12 +117,13 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 * Create security group diyerek adını secure koyuyoruz.
 * SSH Anywhere diyerek ardından new group diyerek yeni group rule ekliyoruz.  HTTP Anywhere , HTTPS Anywhere diyoruz.
 * Launch Instance diyerek Instance'ımızı oluşturuyoruz.
-
+![]()
 <img width="1200" alt="ec2" src="https://github.com/sudkostik/infrastructure/assets/104645493/29082ac4-b4d6-4087-9441-f280323ca114">
 
 
 ## Elastic IPs 
 * Bir Elastic IP oluşturup bunu Instance'ımıza Associate ediyoruz.
+![]()
 <img width="796" alt="elasticIP" src="https://github.com/sudkostik/infrastructure/assets/104645493/06bbfb70-62df-4c2f-8fb9-02c3687d912d">
 
 ## Auto Scaling Group
@@ -124,12 +131,12 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 **Auto Scaling Group (Otomatik Ölçeklendirme Grubu), Amazon Web Services (AWS) içinde yer alan bir hizmettir ve kaynakların otomatik olarak ölçeklendirilmesini sağlar. Auto Scaling Group, uygulamalarınızın veya hizmetlerinizin talebe göre artan veya azalan trafiği karşılamak için dinamik olarak kaynakları ölçeklendirmesine olanak tanır.**
 
 * Instance'ımızı seçiyoruz ve Actions kısmından Instance Settings kısmına giderek ordan Attach to Scaling Group diyoruz.
-
+![]()
 <img width="810" alt="autoscalinggroup" src="https://github.com/sudkostik/infrastructure/assets/104645493/dc5a9121-fd69-41bf-b703-5015f0f5c3ea">
 
 * Bu kısımda mevcut bir Auto Scaling Group olmadığı için bir isim veriyoruz adını Patika ASG koyun. Attach butonuna tıkladığımızda bizim için bir Auto Scaling Group oluşturacak.
 * Oluşturduğumuz Auto Scaling Group üzerinden Desired capacity , Minimum Capacity , Maximum Capacity gibi ayarları değiştirebiliyoruz. Bu ayarlar eğer bir Instance'ınız fazla yük altında kalır veya kapanırsa otomatik aynı tipte bir Instance yaratmasını sağlamak için var. Biz default ayarlarında tutuyoruz. Çünkü bir adeet EC2 Instance kullanmak istiyoruz.
-
+![]()
 <img width="797" alt="autoscalingGP" src="https://github.com/sudkostik/infrastructure/assets/104645493/c1da7d4e-94b0-4f19-b3a8-99bb9f73b640">
 
 
@@ -146,7 +153,7 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 * "Register Targets" (Hedefleri Kaydet) adımında hedef grubuna dahil etmek istediğiniz kaynakları (örneğin, EC2 örnekleri) seçin veya oluşturun.
 
 * "Create" (Oluştur) düğmesini tıklayarak Target Group'un oluşturulmasını başlatın.
-
+![]()
 <img width="620" alt="loadbalancertargetgroup" src="https://github.com/sudkostik/infrastructure/assets/104645493/0dfb173c-5ed0-4c5d-a27c-65f80e60c8ba">
 
 * "Configure Routing" (Yönlendirmeyi Yapılandır) adımında, hangi hedef grubuna yönlendirme yapacağınızı belirleyin. Hedef grupları, yük dengeleyici tarafından yönlendirilen EC2 örneklerini içerir.
@@ -173,6 +180,8 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 * VPC'mizi seçin.
 * Mappings 1. kısmında eu-central-1a subnet olarak patika-wtf-public-1a seçiniz.
 * Mappings 2. kısmında eu-central-1b subnet olarak patika-wtf-public-1b seçiniz.
+
+![]()
 <img width="746" alt="loadbalancer" src="https://github.com/sudkostik/infrastructure/assets/104645493/e09a02b8-b455-4d18-88f9-7098b3e7a97c">
 
 * Security Group kısmında secure ismiyle tasarladığımız security group'u seçiniz.
@@ -182,6 +191,7 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 
 **Create Load Balancer diyerek Load Balancer'ımızı oluşturun.**
 
+![]()
 <img width="620" alt="loadbalancertargetgroup" src="https://github.com/sudkostik/infrastructure/assets/104645493/3020b024-d399-4384-8ddd-f26f00aa9ce1">
 
 
@@ -190,7 +200,7 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 
 
 
-
+![]()
 <img width="937" alt="finished" src="https://github.com/sudkostik/infrastructure/assets/104645493/3c005fd0-5f30-48a8-9f39-d8b758e4df0a">
 
 
