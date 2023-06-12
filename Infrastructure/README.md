@@ -35,7 +35,8 @@
 * Oluşturulan Internet Gateway'in ayrıntıları görüntülenecektir. Internet Gateway, "Actions" (Eylemler) düğmesini kullanarak VPC'nize Attach düğmesiyle bağlayın.
  ### **Internet Gateways**
  
-<img width="799" alt="igw" src="https://github.com/sudkostik/infrastructure/assets/104645493/6239a83e-4958-404e-8263-41de2d6855bb">
+![IGW Image](https://github.com/sudkostik/infrastructure/blob/main/assets/104645493_6239a83e_4958_404e_8263_41de2d6855bb.jpg)
+
 
 ## Route Tables Oluşturulması
 **Route Tables, bir Amazon Virtual Private Cloud (VPC) içindeki trafik yönlendirmesini kontrol etmek için kullanılan bileşenlerdir. Route Tables, VPC içindeki alt ağlara veya alt ağa bağlı kaynaklara yönlendirme kuralları sağlar. Ayrıca, Internet Gateway, Sanal Özel Ağ (VPN) bağlantıları, NAT (Network Address Translation) ağ geçitleri gibi diğer ağ bileşenleriyle iletişimi sağlar.**
