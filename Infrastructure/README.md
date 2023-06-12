@@ -10,6 +10,7 @@
 * Sol tarafta yer alan 'Your VPCs' seçeneğini tıklayın ve ardından 'Create VPC' seçeneğini seçin.
 * Açılan formda, VPC için bir isim belirleyin ve IPv4 CIDR block olarak '10.0.0.0/16' (istersek fazla ip meşgul etmemek için 4 farklı subnete 62 host verebilecek minimum değere yakın bir aralık verebiliriz 10.0.0.0/22 gibi fakat böyle tercih ettim. Subnet kısmında ip bloklarına dikkat ettim) değerini girin ve 'Create' butonuna tıklayın.
 ### **Oluşmuş VPC**
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Infrastructure/InfrasImages/olusmusvpc.png)
 <img width="1200" alt="vpc" src="https://github.com/sudkostik/infrastructure/assets/104645493/e9c177cd-7977-4845-9145-01289602f747"> 
 
 * VPC oluşturulduktan sonra, sol taraftaki 'Subnets' seçeneğine tıklayın ve 'Create subnet' butonuna tıklayın.
