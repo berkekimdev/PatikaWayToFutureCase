@@ -51,8 +51,7 @@ chmod +x disk_usage.sh
 ```
 * Terminalde oluşacak görüntü şuna benzer olacaktır. 
 
-
-<img width="600" alt="usage" src="https://github.com/sudkostik/patikaproje2/assets/104645493/12981959-acb5-4f3c-8422-34e1f710d8d0">
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Coding/CodingImages/UsageReport.png)  
 
 ## Kullanılan Kodların Açıklamaları
 `(#!/bin/bash `: Bu, betiğin yorumlanması gereken dilin Bash olduğunu belirtir. Bu, genellikle betik dosyalarının en üstünde bulunur ve betiğin nasıl çalıştırılacağını belirler.
