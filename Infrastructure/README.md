@@ -197,8 +197,7 @@ Kuralları ekledikten sonra "Save" (Kaydet) düğmesini tıklayın.**
 
 
 
-![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Infrastructure/InfrasImages/bitis.png)
-<img width="937" alt="finished" src="https://github.com/sudkostik/infrastructure/assets/104645493/3c005fd0-5f30-48a8-9f39-d8b758e4df0a">
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/Infrastructure/InfrasImages/bitis.png)  
 
 
 
