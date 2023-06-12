@@ -121,7 +121,7 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 * İlk olarak Dockerhub'a giriş yapmalısınız.
 * Terminal üzerinden``docker login`` diyerek kullanici adı ve şifrenizi giriniz.
 * Ardından dockerhub'a oluşturduğunuz docker image'ı pushlamak için şu komutları kullanın
-`` docker push <kullanıcı-adı>/<imaj-adı>:<sürüm>`` 
+``docker push <kullanıcı-adı>/<imaj-adı>:<sürüm>``  
 ![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/dockerimagedockerhubyukleme.png)
 
 
