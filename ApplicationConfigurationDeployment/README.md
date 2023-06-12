@@ -59,8 +59,8 @@ CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
 * Güvenlik için **NON ROOT**  user kullanımı tercih ettim. Bu nedir diye sorarsak Docker konteynerlerinde varsayılan olarak süreçler root (kök) kullanıcısı kimliğiyle çalışır. Ancak, root ayrıcalıklarına sahip bir süreç, bir güvenlik açığı söz konusu olduğunda potansiyel olarak daha büyük riskler oluşturabilir. Bu nedenle, birçok güvenlik en iyi uygulaması, Docker konteynerlerinin root yerine non-root kullanıcı kimliğiyle çalışmasını önerir.
 * Performans ve boyut için slim-buster ve **Multi-Stage Build** kullandım. Multi-stage build, Dockerfile içinde birden fazla yapı aşamasının kullanılmasını sağlar. Bu sayede, gereksinimleri oluşturma ve daha sonra nihai üretim görüntüsünü oluşturma gibi farklı aşamaları bir arada kullanabiliriz. Multi-stage build, son üretim görüntüsünü daha küçük boyutlarda ve gereksinimlere göre optimize edilmiş şekilde elde etmemizi sağlar.
 * İlk versiyonuna göre bu sayede yaklaşık 8MB daha az bir boyutta image oluşturdum.
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/ilkfoto.png)
 
-<img width="1200" alt="boyut8mb" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/fd79941c-9b76-456e-bcad-1333420c786d">
 
 ### **Dockerfile'da yazan kodlar ne işe yarıyor**
 ``FROM python:3.8-slim-buster as builder``
@@ -107,24 +107,24 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 
 * Dockerhub'ta ilk olarak bir repository yaratmamız lazım. Buna çok dikkat etmelisiniz çünkü oluşturacağımız image ile aynı ada sahip olmalı. Ben bootcamp adında bir repository oluşturuyorum ve sudkostik/bootcamp adıyla image'ımı oluşturucam.
 * 
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/dockerhub.png)
 
-<img width="1039" alt="dockerhub" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/c6ee1bb0-6cc2-4d74-8c1c-a4633a2f2787">
 
 ### 1- Docker Image Oluşturma
 * Dockerfile ve flask app'imizin bulunduğu klasöre  terminal üzerinden gidiyoruz.
 ``sudo docker build -t <imaj-adı>:<sürüm> . `` formatında docker image'ımızı oluşturmamız lazım.  
 
 ``sudo docker build -t sudkostik/bootcamp:0.0.1 .``  gibi yazarak docker image'ınızı bu formatta oluşturun.
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/dockerimageolusturma.png)
 
-<img width="1200" alt="dockerimageolusturma" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/ca335caa-f8a6-4e15-8e91-80ec783665eb">
 
 ### 2- Docker Image'ınızı Dockerhub'a Yükleme
 * İlk olarak Dockerhub'a giriş yapmalısınız.
 * Terminal üzerinden``docker login`` diyerek kullanici adı ve şifrenizi giriniz.
 * Ardından dockerhub'a oluşturduğunuz docker image'ı pushlamak için şu komutları kullanın
 `` docker push <kullanıcı-adı>/<imaj-adı>:<sürüm>`` 
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/dockerimagedockerhubyukleme.png)
 
-<img width="800" alt="dockerpush1" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/016a0c99-1480-46b3-a379-2258df8e3cdb">
 
 * Artık docker image'ımızı ssh ile bağlanıp sunucumuza indirip kurabiliriz.
 
@@ -136,8 +136,8 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 * Key Pairimizin bulunduğu klasöre gidip terminalden ilk olarak ``chmod 400 yourkeypair.pem`` çalıştırıyoruz.
 * Bundan sonra ssh-i olarak yazan kodumuzu kopyalayıp terminale yazıp çalıştırıyoruz. Bu işlemde sunucumuza bağlanıyoruz.
 
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/ssh.png)
 
-<img width="799" alt="ssh15" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/f0df1ec8-6579-4ef9-a749-0958d64a905f">
 
 **Şu komutları sırayla çalıştırmanız gerekiyor.**
 
@@ -150,8 +150,8 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 
 * Artık sitemize giriş yapabiliriz : IP : 18.159.16.101 
 
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/nginx.png)
 
-<img width="828" alt="nginxgiris" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/7d8f44fc-bc9e-4caa-9b78-f1a165b0131c">
 
 
 ### Docker Image Kurulumu
@@ -162,8 +162,8 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 * Artık application'ımıza IP'mizin 5000. portundan erişebiliriz  IP : http://18.159.16.101:5000
 
 
+![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/5000.png)
 
-<img width="424" alt="5000" src="https://github.com/sudkostik/ApplicationConfigurationDeployment/assets/104645493/3e3767b3-5ee0-4f28-a99f-9cd8532e4689">
 
 
 
