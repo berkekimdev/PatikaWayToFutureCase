@@ -105,8 +105,7 @@ Bu komut, konteynerin PATH çevre değişkenini günceller ve '/home/appuser/.lo
 ## Dockerhub
 * Docker Container Registries (Docker Konteyner Kaynak Depoları) hizmetidir. DockerHub, Docker konteynerlerinin paylaşıldığı, depolandığı ve dağıtıldığı bir platformdur. Dockerhub sayesinde oluşturacağımız image'ı  dockerhub'a yükleyip uzaktaki Cloud sunucumuza indirip kurabileceğiz.
 
-* Dockerhub'ta ilk olarak bir repository yaratmamız lazım. Buna çok dikkat etmelisiniz çünkü oluşturacağımız image ile aynı ada sahip olmalı. Ben bootcamp adında bir repository oluşturuyorum ve sudkostik/bootcamp adıyla image'ımı oluşturucam.
-* 
+* Dockerhub'ta ilk olarak bir repository yaratmamız lazım. Buna çok dikkat etmelisiniz çünkü oluşturacağımız image ile aynı ada sahip olmalı. Ben bootcamp adında bir repository oluşturuyorum ve sudkostik/bootcamp adıyla image'ımı oluşturucam.  
 ![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/dockerhub.png)
 
 
