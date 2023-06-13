@@ -56,7 +56,7 @@ CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
 
 ### **Güvenlik ve Performans**
 * Docker image'ımızı oluştururken  güvenlik ve performans konusuna dikkat etmeliyiz.
-* Güvenlik için **NON ROOT**  user kullanımı tercih ettim. Bu nedir diye sorarsak Docker konteynerlerinde varsayılan olarak süreçler root (kök) kullanıcısı kimliğiyle çalışır. Ancak, root ayrıcalıklarına sahip bir süreç, bir güvenlik açığı söz konusu olduğunda potansiyel olarak daha büyük riskler oluşturabilir. Bu nedenle, birçok güvenlik en iyi uygulaması, Docker konteynerlerinin root yerine non-root kullanıcı kimliğiyle çalışmasını önerir.
+* Güvenlik için **NON ROOT**  user kullanımı tercih ettim. Bu nedir diye sorarsak Docker konteynerlerinde varsayılan olarak süreçler root (kök) kullanıcısı kimliğiyle çalışır. Ancak, root ayrıcalıklarına sahip bir süreç, bir güvenlik açığı söz konusu olduğunda potansiyel olarak daha büyük riskler oluşturabilir. Bu nedenle, birçok güvenlik en iyi uygulaması(Security Best Practices), Docker konteynerlerinin root yerine non-root kullanıcı kimliğiyle çalışmasını önerir.
 * Performans ve boyut için slim-buster ve **Multi-Stage Build** kullandım. Multi-stage build, Dockerfile içinde birden fazla yapı aşamasının kullanılmasını sağlar. Bu sayede, gereksinimleri oluşturma ve daha sonra nihai üretim görüntüsünü oluşturma gibi farklı aşamaları bir arada kullanabiliriz. Multi-stage build, son üretim görüntüsünü daha küçük boyutlarda ve gereksinimlere göre optimize edilmiş şekilde elde etmemizi sağlar.
 * İlk versiyonuna göre bu sayede yaklaşık 8MB daha az bir boyutta image oluşturdum.
 ![](https://github.com/sudkostik/PatikaWayToFutureCase/blob/main/ApplicationConfigurationDeployment/AcdImages/ilkfoto.png)
