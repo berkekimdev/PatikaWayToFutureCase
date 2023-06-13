@@ -1,5 +1,5 @@
 ## Infrastructure Management ( IP : 18.159.16.101:5000 ) 
-* Private ve 2 Public Subnet’i bulunan bir VPC yaratılması. Bu yaratacaginiz Subnet’lerin IP block'u 62 tane host alacabilecek.
+* 2 Private ve 2 Public Subnet’i bulunan bir VPC yaratılması. Bu yaratacaginiz Subnet’lerin IP block'u 62 tane host alacabilecek.
 * Bir tane EC2 Instance (makina) ayaga kaldırılıp bu makina Auto Scaling Group icinde olacak.
 * Bu yarattiginiz EC2’nun önüne bir Application Load Balancer konumlanacak.
 
